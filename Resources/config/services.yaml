@@ -19,6 +19,18 @@ services:
   Ultipro\Client:
     alias: 'ultipro.client'
 
+  ultipro.client.soap:
+    class: Ultipro\UltiproSoapClient
+    arguments:
+      - '%ultipro_sdk.username%'
+      - '%ultipro_sdk.password%'
+      - '%ultipro_sdk.customer_api_key%'
+      - '%ultipro_sdk.user_api_key%'
+      - '%ultipro_sdk.base_uri%'
+
+  Ultipro\UltiproSoapClient:
+    alias: 'ultipro.client.soap'
+
   ultipro.client.configuration:
     class: Ultipro\Configuration\ConfigurationClient
     parent: ultipro.client
@@ -32,3 +44,10 @@ services:
 
   Ultipro\Personnel\PersonnelClient:
      alias: 'ultipro.client.personnel'
+
+  ultipro.client.employee_pay_statement:
+    class: Ultipro\EmployeePayStatement\EmployeePayStatementClient
+    parent: ultipro.client.soap
+
+  Ultipro\EmployeePayStatement\EmployeePayStatementClient:
+    alias: 'ultipro.client.employee_pay_statement'
