@@ -14,7 +14,7 @@ services:
     class: Ultipro\UltiproSoapClient
     arguments:
       - '@ultipro.authentication'
-      - 'https://service5.ultipro.com/services/BIDataService'
+      - '%ultipro_sdk.base_uri%'
       - '%ultipro_sdk.options%'
       - '@logger'
 
